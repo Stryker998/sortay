@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SortAY</string>
+    <string name="title_main">Welcome to SortAY</string>
+    <string name="subtitle_main">All your assets, sorted at one place</string>
+    <string name="real_estate_main">Real Estate</string>
+    <string name="stocks_main">Stocks</string>
+    <string name="metamask_main">Connect to Metamask</string>
+</resources>
