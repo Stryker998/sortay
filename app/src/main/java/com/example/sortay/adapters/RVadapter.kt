@@ -1,6 +1,8 @@
 package com.example.sortay.adapters
 
+import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -13,65 +15,106 @@ import com.example.sortay.databinding.FurtherStatsBinding
 
 class RVadapter: RecyclerView.Adapter<RVadapter.RVViewHolder>() {
 
-    private var stocksList: MutableList<StocksData>? = null
-    private var nftList: MutableList<NFTData>? = null
-    private var realEstateList: MutableList<RealEstateData>? = null
-    private var cryptocurrencyList: MutableList<CryptocurrencyData>? = null
+    internal var stocksList: List<StocksData>? = null
+    internal var nftList: List<NFTData>? = null
+    internal var realEstateList: List<RealEstateData>? = null
+    internal var cryptocurrencyList: List<CryptocurrencyData>? = null
 
     inner class RVViewHolder(private val binding: FurtherStatsBinding) : RecyclerView.ViewHolder(binding.root) {
         internal fun bind(
-            stockData: StocksData? = null, nftData: NFTData? = null, realEstateData: RealEstateData? = null, cryptocurrencyData: CryptocurrencyData? = null
+            stockData: StocksData? = null, nftData: NFTData? = null, realEstateData: RealEstateData? = null, cryptocurrencyData: CryptocurrencyData? = null, position: Int? = null
         ) {
+            if (position == 0) {
+                binding.itemDivider.visibility = View.GONE
+            }
             stocksList?.let {
                 val data = stockData!!
                 binding.apply {
-                    nameStatsText.text = data.name
-                    if (data.percentage < 0)
-                        percentageStatsText.background = ResourcesCompat.getDrawable(binding.root.context.resources, R.drawable.background_percentage_decrease, null)
-                    else
-                        percentageStatsText.background = ResourcesCompat.getDrawable(binding.root.context.resources, R.drawable.background_percentage_increase, null)
-
-                    percentageStatsText.text = data.percentage.toString()
-                    priceStatsText.text = data.price.toString()
+                    if (position == 0) {
+                        nameStatsText.text = "Name"
+                        percentageStatsText.text = "%(1Y)"
+                        priceStatsText.text = "Price"
+                    }
+                    else {
+                        nameStatsText.text = data.name
+                        percentageStatsText.setTextColor(Color.WHITE)
+                        if (data.percentage < 0) {
+                            percentageStatsText.background = ResourcesCompat.getDrawable(binding.root.context.resources, R.drawable.background_percentage_decrease, null)
+                            percentageStatsText.text = "${data.percentage}%"
+                        }
+                        else {
+                            percentageStatsText.background = ResourcesCompat.getDrawable(binding.root.context.resources, R.drawable.background_percentage_increase, null)
+                            percentageStatsText.text = "+${data.percentage}%"
+                        }
+                        priceStatsText.text = "₹${data.price}"
+                    }
                 }
             }
             nftList?.let {
                 val data = nftData!!
                 binding.apply {
-                    nameStatsText.text = data.name
-                    if (data.percentage < 0)
-                        percentageStatsText.background = ResourcesCompat.getDrawable(binding.root.context.resources, R.drawable.background_percentage_decrease, null)
-                    else
-                        percentageStatsText.background = ResourcesCompat.getDrawable(binding.root.context.resources, R.drawable.background_percentage_increase, null)
-
-                    percentageStatsText.text = data.percentage.toString()
-                    priceStatsText.text = data.price.toString()
+                    if (position == 0) {
+                        nameStatsText.text = "Name"
+                        percentageStatsText.text = "%(1Y)"
+                        priceStatsText.text = "Floor price"
+                    } else {
+                        nameStatsText.text = data.name
+                        percentageStatsText.setTextColor(Color.WHITE)
+                        if (data.percentage < 0) {
+                            percentageStatsText.background = ResourcesCompat.getDrawable(binding.root.context.resources, R.drawable.background_percentage_decrease, null)
+                            percentageStatsText.text = "${data.percentage}%"
+                        }
+                        else {
+                            percentageStatsText.background = ResourcesCompat.getDrawable(binding.root.context.resources, R.drawable.background_percentage_increase, null)
+                            percentageStatsText.text = "+${data.percentage}%"
+                        }
+                        priceStatsText.text = "${data.price}ETH"
+                    }
                 }
             }
             realEstateList?.let {
                 val data = realEstateData!!
                 binding.apply {
-                    nameStatsText.text = data.name
-                    if (data.percentage < 0)
-                        percentageStatsText.background = ResourcesCompat.getDrawable(binding.root.context.resources, R.drawable.background_percentage_decrease, null)
-                    else
-                        percentageStatsText.background = ResourcesCompat.getDrawable(binding.root.context.resources, R.drawable.background_percentage_increase, null)
-
-                    percentageStatsText.text = "${data.currentPrice}(${data.percentage})"
-                    priceStatsText.text = data.price.toString()
+                    if (position == 0) {
+                        nameStatsText.text = "Name"
+                        percentageStatsText.text = "%(1Y)"
+                        priceStatsText.text = """Price
+                            |(/sqfeet)""".trimMargin()
+                    } else {
+                        percentageStatsText.setTextColor(Color.WHITE)
+                        nameStatsText.text = data.name
+                        if (data.percentage < 0) {
+                            percentageStatsText.background = ResourcesCompat.getDrawable(binding.root.context.resources, R.drawable.background_percentage_decrease, null)
+                            percentageStatsText.text = "${data.currentPrice}${data.unit}(${data.percentage}%)"
+                        }
+                        else {
+                            percentageStatsText.background = ResourcesCompat.getDrawable(binding.root.context.resources, R.drawable.background_percentage_increase, null)
+                            percentageStatsText.text = "${data.currentPrice}${data.unit}(+${data.percentage}%)"
+                        }
+                        priceStatsText.text = "₹${data.price}"
+                    }
                 }
             }
             cryptocurrencyList?.let {
                 val data = cryptocurrencyData!!
                 binding.apply {
-                    nameStatsText.text = data.name
-                    if (data.percentage < 0)
-                        percentageStatsText.background = ResourcesCompat.getDrawable(binding.root.context.resources, R.drawable.background_percentage_decrease, null)
-                    else
-                        percentageStatsText.background = ResourcesCompat.getDrawable(binding.root.context.resources, R.drawable.background_percentage_increase, null)
-
-                    percentageStatsText.text = data.percentage.toString()
-                    priceStatsText.text = data.price.toString()
+                    if (position == 0) {
+                        nameStatsText.text = "Name"
+                        percentageStatsText.text = "%(1Y)"
+                        priceStatsText.text = "Price"
+                    } else {
+                        percentageStatsText.setTextColor(Color.WHITE)
+                        nameStatsText.text = data.name
+                        if (data.percentage < 0) {
+                            percentageStatsText.background = ResourcesCompat.getDrawable(binding.root.context.resources, R.drawable.background_percentage_decrease, null)
+                            percentageStatsText.text = "${data.percentage}%"
+                        }
+                        else {
+                            percentageStatsText.background = ResourcesCompat.getDrawable(binding.root.context.resources, R.drawable.background_percentage_increase, null)
+                            percentageStatsText.text = "+${data.percentage}%"
+                        }
+                        priceStatsText.text = "$${data.price}"
+                    }
                 }
             }
         }
@@ -104,16 +147,16 @@ class RVadapter: RecyclerView.Adapter<RVadapter.RVViewHolder>() {
 
     override fun onBindViewHolder(holder: RVViewHolder, position: Int) {
         stocksList?.let {
-            holder.bind(stockData = it[position])
+            holder.bind(stockData = it[position], position = position)
         }
         nftList?.let {
-            holder.bind(nftData = it[position])
+            holder.bind(nftData = it[position], position = position)
         }
         realEstateList?.let {
-            holder.bind(realEstateData = it[position])
+            holder.bind(realEstateData = it[position], position = position)
         }
         cryptocurrencyList?.let {
-            holder.bind(cryptocurrencyData = it[position])
+            holder.bind(cryptocurrencyData = it[position], position = position)
         }
     }
 }

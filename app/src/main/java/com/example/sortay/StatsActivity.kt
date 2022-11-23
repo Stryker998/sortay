@@ -1,5 +1,6 @@
 package com.example.sortay
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -22,6 +23,11 @@ class StatsActivity : AppCompatActivity() {
         binding = ActivityStatsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         bind()
+    }
+    private fun nextActivity(data: String) {
+        val intent = Intent(this, FurtherStatsActivity::class.java)
+        intent.putExtra("list", data)
+        startActivity(intent)
     }
 
     private fun bind() {
@@ -64,6 +70,19 @@ class StatsActivity : AppCompatActivity() {
             pieChart.data = data
             pieChart.highlightValues(null)
             pieChart.invalidate()
+
+            stocksStatButton.setOnClickListener {
+                nextActivity("stockList")
+            }
+            nftStatButton.setOnClickListener {
+                nextActivity("nftList")
+            }
+            cryptocurrencyStatButton.setOnClickListener {
+                nextActivity("cryptoList")
+            }
+            realEstateStatButton.setOnClickListener {
+                nextActivity("realEstateList")
+            }
         }
     }
 }
