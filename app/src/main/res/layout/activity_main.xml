@@ -8,9 +8,12 @@
 
     <ImageView
         android:id="@+id/logo_placeholder"
-        android:layout_width="146dp"
-        android:layout_height="114dp"
-        android:layout_marginTop="64dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:adjustViewBounds="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,10 +23,10 @@
         android:id="@+id/title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="@string/title_main"
-        android:textStyle="bold"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo_placeholder" />
@@ -39,34 +42,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_text" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/real_estate_button"
-        style="@style/MaterialButton.Default"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
-        android:textSize="18sp"
-        android:text="@string/real_estate_main"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/subtitle_text" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/stocks_button"
-        style="@style/MaterialButton.Default"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:textSize="18sp"
-        android:text="@string/stocks_main"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/real_estate_button" />
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/button_divider"
@@ -98,7 +73,24 @@
         android:text="OR"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stocks_button" />
+        app:layout_constraintTop_toBottomOf="@+id/metamask_button" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/guest_login_button"
+        style="@style/MaterialButton.Default"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:text="Continue as Guest"
+        android:textSize="18sp"
+        app:icon="@drawable/chevron_right_24px"
+        app:iconGravity="textEnd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/or_text" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/metamask_button"
@@ -106,12 +98,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="32dp"
-        android:textSize="18sp"
         android:text="@string/metamask_main"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/or_text" />
+        app:layout_constraintTop_toBottomOf="@+id/subtitle_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -99,48 +100,52 @@ class FurtherStatsActivity : AppCompatActivity() {
 
     private fun bind(adapter: RVadapter) {
         binding.apply {
-            pieChartFurtherStats.setUsePercentValues(true)
-            pieChartFurtherStats.description.isEnabled = false
-            pieChartFurtherStats.setExtraOffsets(5f, 10f, 5f, 5f)
-            pieChartFurtherStats.dragDecelerationFrictionCoef = 0.95f
-            pieChartFurtherStats.isDrawHoleEnabled = false
-            pieChartFurtherStats.setTransparentCircleAlpha(0)
-            pieChartFurtherStats.setDrawCenterText(true)
-            pieChartFurtherStats.legend.textColor = resources.getColor(R.color.legends, theme)
-            pieChartFurtherStats.rotationAngle = 0f
-            pieChartFurtherStats.isRotationEnabled = true
-            pieChartFurtherStats.isHighlightPerTapEnabled = true
-            pieChartFurtherStats.animateY(1400, Easing.EaseInOutQuad)
-            pieChartFurtherStats.setEntryLabelColor(Color.WHITE)
-            pieChartFurtherStats.setEntryLabelTextSize(12f)
-            val entries: ArrayList<PieEntry> = ArrayList()
-            entries.add(PieEntry(15.6f, "Real Estate"))
-            entries.add(PieEntry(19.3f, "NFT"))
-            entries.add(PieEntry(30f, "Stocks"))
-            entries.add(PieEntry(43f, "Cryptocurrency"))
-            val dataSet = PieDataSet(entries, "")
-            dataSet.setDrawIcons(false)
-            dataSet.sliceSpace = 3f
-            dataSet.iconsOffset = MPPointF(0f, 40f)
-            dataSet.selectionShift = 5f
-            val colors: ArrayList<Int> = ArrayList()
-            colors.add(resources.getColor(R.color.realEstate, theme))
-            colors.add(resources.getColor(R.color.nft, theme))
-            colors.add(resources.getColor(R.color.stocks, theme))
-            colors.add(resources.getColor(R.color.cryptocurrency, theme))
-            dataSet.colors = colors
-            val data = PieData(dataSet)
-            data.setValueFormatter(PercentFormatter())
-            data.setValueTextSize(15f)
-            data.setValueTypeface(Typeface.DEFAULT_BOLD)
-            data.setValueTextColor(Color.WHITE)
-            pieChartFurtherStats.data = data
-            pieChartFurtherStats.highlightValues(null)
-            pieChartFurtherStats.invalidate()
-
+            val isGuest = intent.extras?.getBoolean("Guest")
             statsRv.adapter = adapter
             statsRv.layoutManager =
                 GridLayoutManager(this@FurtherStatsActivity, 1, GridLayoutManager.VERTICAL, false)
+            if (isGuest != true) {
+                pieChartFurtherStats.setUsePercentValues(true)
+                pieChartFurtherStats.description.isEnabled = false
+                pieChartFurtherStats.setExtraOffsets(5f, 10f, 5f, 5f)
+                pieChartFurtherStats.dragDecelerationFrictionCoef = 0.95f
+                pieChartFurtherStats.isDrawHoleEnabled = false
+                pieChartFurtherStats.setTransparentCircleAlpha(0)
+                pieChartFurtherStats.setDrawCenterText(true)
+                pieChartFurtherStats.legend.textColor = resources.getColor(R.color.legends, theme)
+                pieChartFurtherStats.rotationAngle = 0f
+                pieChartFurtherStats.isRotationEnabled = true
+                pieChartFurtherStats.isHighlightPerTapEnabled = true
+                pieChartFurtherStats.animateY(1400, Easing.EaseInOutQuad)
+                pieChartFurtherStats.setEntryLabelColor(Color.WHITE)
+                pieChartFurtherStats.setEntryLabelTextSize(12f)
+                val entries: ArrayList<PieEntry> = ArrayList()
+                val loss = adapter.returnLoss()
+                val profit = 1f - loss
+                entries.add(PieEntry(profit * 100f, "Profit"))
+                entries.add(PieEntry(loss * 100f, "Loss"))
+                val dataSet = PieDataSet(entries, "")
+                dataSet.setDrawIcons(false)
+                dataSet.sliceSpace = 3f
+                dataSet.iconsOffset = MPPointF(0f, 40f)
+                dataSet.selectionShift = 5f
+                val colors: ArrayList<Int> = ArrayList()
+                colors.add(resources.getColor(R.color.profit, theme))
+                colors.add(resources.getColor(R.color.loss, theme))
+                colors.add(Color.RED)
+                dataSet.colors = colors
+                val data = PieData(dataSet)
+                data.setValueFormatter(PercentFormatter())
+                data.setValueTextSize(15f)
+                data.setValueTypeface(Typeface.DEFAULT_BOLD)
+                data.setValueTextColor(Color.WHITE)
+                pieChartFurtherStats.data = data
+                pieChartFurtherStats.highlightValues(null)
+                pieChartFurtherStats.invalidate()
+            } else {
+                pieChartFurtherStats.visibility = View.GONE
+            }
+
         }
     }
 }

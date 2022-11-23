@@ -15,15 +15,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.apply {
             metamaskButton.setOnClickListener {
-                val intent = Intent(this@MainActivity, LoginActvitiy::class.java)
-                startActivity(intent)
-            }
-            realEstateButton.setOnClickListener {
                 val intent = Intent(this@MainActivity, StatsActivity::class.java)
                 startActivity(intent)
             }
-            stocksButton.setOnClickListener {
-                val intent = Intent(this@MainActivity, FurtherStatsActivity::class.java)
+            guestLoginButton.setOnClickListener {
+                val intent = Intent(this@MainActivity, StatsActivity::class.java)
+                intent.putExtra("Guest", true)
                 startActivity(intent)
             }
         }

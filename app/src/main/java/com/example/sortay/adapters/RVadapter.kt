@@ -20,6 +20,38 @@ class RVadapter: RecyclerView.Adapter<RVadapter.RVViewHolder>() {
     internal var realEstateList: List<RealEstateData>? = null
     internal var cryptocurrencyList: List<CryptocurrencyData>? = null
 
+    fun returnLoss(): Float {
+        stocksList?.let {
+            var loss = 0
+            it.forEach { stocksData ->
+                if (stocksData.percentage < 0.0) loss++
+            }
+            return (loss.toFloat() / it.size.toFloat())
+        }
+        nftList?.let {
+            var loss = 0
+            it.forEach { nftData ->
+                if (nftData.percentage < 0.0) loss++
+            }
+            return (loss.toFloat() / it.size.toFloat())
+        }
+        realEstateList?.let {
+            var loss = 0
+            it.forEach { realEstateData ->
+                if (realEstateData.percentage < 0.0) loss++
+            }
+            return (loss.toFloat() / it.size.toFloat())
+        }
+        cryptocurrencyList?.let {
+            var loss = 0
+            it.forEach { cryptocurrencyData ->
+                if (cryptocurrencyData.percentage < 0.0) loss++
+            }
+            return (loss.toFloat() / it.size.toFloat())
+        }
+        throw Exception("No List declared")
+    }
+
     inner class RVViewHolder(private val binding: FurtherStatsBinding) : RecyclerView.ViewHolder(binding.root) {
         internal fun bind(
             stockData: StocksData? = null, nftData: NFTData? = null, realEstateData: RealEstateData? = null, cryptocurrencyData: CryptocurrencyData? = null, position: Int? = null

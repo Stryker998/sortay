@@ -12,4 +12,6 @@
     <color name="nft">#CB4335</color>
     <color name="cryptocurrency">#21618C</color>
     <color name="legends">#000000</color>
+    <color name="profit">#008000</color>
+    <color name="loss">#FF0000</color>
 </resources>

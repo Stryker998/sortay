@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="guest_height">70dp</dimen>
+    <dimen name="guest_margin">32dp</dimen>
+    <dimen name="guest_margin_top">64dp</dimen>
+</resources>
