@@ -19,6 +19,7 @@ class RVadapter: RecyclerView.Adapter<RVadapter.RVViewHolder>() {
     internal var nftList: List<NFTData>? = null
     internal var realEstateList: List<RealEstateData>? = null
     internal var cryptocurrencyList: List<CryptocurrencyData>? = null
+    internal var isGuest: Boolean = false
 
     fun returnLoss(): Float {
         stocksList?.let {
@@ -64,7 +65,7 @@ class RVadapter: RecyclerView.Adapter<RVadapter.RVViewHolder>() {
                 binding.apply {
                     if (position == 0) {
                         nameStatsText.text = "Name"
-                        percentageStatsText.text = "%(1Y)"
+                        percentageStatsText.text = if (isGuest) "%(1Y)" else "%"
                         priceStatsText.text = "Price"
                     }
                     else {
@@ -87,7 +88,7 @@ class RVadapter: RecyclerView.Adapter<RVadapter.RVViewHolder>() {
                 binding.apply {
                     if (position == 0) {
                         nameStatsText.text = "Name"
-                        percentageStatsText.text = "%(1Y)"
+                        percentageStatsText.text = if (isGuest) "%(1Y)" else "%"
                         priceStatsText.text = "Floor price"
                     } else {
                         nameStatsText.text = data.name
@@ -109,7 +110,7 @@ class RVadapter: RecyclerView.Adapter<RVadapter.RVViewHolder>() {
                 binding.apply {
                     if (position == 0) {
                         nameStatsText.text = "Name"
-                        percentageStatsText.text = "%(1Y)"
+                        percentageStatsText.text = if (isGuest) "%(1Y)" else "%"
                         priceStatsText.text = """Price
                             |(/sqfeet)""".trimMargin()
                     } else {
@@ -132,7 +133,7 @@ class RVadapter: RecyclerView.Adapter<RVadapter.RVViewHolder>() {
                 binding.apply {
                     if (position == 0) {
                         nameStatsText.text = "Name"
-                        percentageStatsText.text = "%(1Y)"
+                        percentageStatsText.text = if (isGuest) "%(1Y)" else "%"
                         priceStatsText.text = "Price"
                     } else {
                         percentageStatsText.setTextColor(Color.WHITE)
