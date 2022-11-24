@@ -1,7 +1,9 @@
 package com.example.sortay
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -142,6 +144,25 @@ class FurtherStatsActivity : AppCompatActivity() {
                 pieChartFurtherStats.data = data
                 pieChartFurtherStats.highlightValues(null)
                 pieChartFurtherStats.invalidate()
+                buyNowButton.setOnClickListener {
+                    when(intent.extras?.getString("list")) {
+                        "realEstateList" -> {
+                        }
+                        "stockList" -> {
+                            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://groww.in/stocks"))
+                            startActivity(i)
+                        }
+                        "cryptoList" -> {
+                            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.binance.com/en-IN"))
+                            startActivity(i)
+                        }
+                        "nftList" -> {
+                            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://opensea.io/"))
+                            startActivity(i)
+                        }
+                        else -> throw Exception("Wrong Intent")
+                    }
+                }
             } else {
                 pieChartFurtherStats.visibility = View.GONE
                 adapter.isGuest = true
