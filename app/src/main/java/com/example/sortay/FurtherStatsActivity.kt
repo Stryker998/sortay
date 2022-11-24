@@ -144,6 +144,8 @@ class FurtherStatsActivity : AppCompatActivity() {
                 pieChartFurtherStats.invalidate()
             } else {
                 pieChartFurtherStats.visibility = View.GONE
+                adapter.isGuest = true
+                buyNowButton.visibility = View.GONE
             }
 
         }
