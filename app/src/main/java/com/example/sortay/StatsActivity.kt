@@ -56,8 +56,8 @@ class StatsActivity : AppCompatActivity() {
                 val entries: ArrayList<PieEntry> = ArrayList()
                 entries.add(PieEntry(15.6f, "Real Estate"))
                 entries.add(PieEntry(19.3f, "NFT"))
-                entries.add(PieEntry(30f, "Stocks"))
-                entries.add(PieEntry(43f, "Cryptocurrency"))
+                entries.add(PieEntry(27.8f, "Stocks"))
+                entries.add(PieEntry(39.9f, "Cryptocurrency"))
                 val dataSet = PieDataSet(entries, "")
                 dataSet.setDrawIcons(false)
                 dataSet.sliceSpace = 3f
@@ -78,9 +78,13 @@ class StatsActivity : AppCompatActivity() {
                 pieChart.highlightValues(null)
                 pieChart.invalidate()
                 stocksStatButton.setBackgroundColor(resources.getColor(R.color.stocks, theme))
+                stocksStatButton.setTextColor(Color.WHITE)
                 nftStatButton.setBackgroundColor(resources.getColor(R.color.nft, theme))
+                nftStatButton.setTextColor(Color.WHITE)
                 cryptocurrencyStatButton.setBackgroundColor(resources.getColor(R.color.cryptocurrency, theme))
+                cryptocurrencyStatButton.setTextColor(Color.WHITE)
                 realEstateStatButton.setBackgroundColor(resources.getColor(R.color.realEstate, theme))
+                realEstateStatButton.setTextColor(Color.WHITE)
             } else {
                 pieChart.visibility = View.GONE
                 guestText.visibility = View.VISIBLE

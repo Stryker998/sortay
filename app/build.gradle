@@ -42,10 +42,12 @@ dependencies {
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
-
-    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.10.0"))
-    implementation("com.squareup.okhttp3:okhttp")
-    implementation("com.squareup.okhttp3:logging-interceptor")
+    implementation 'com.github.WalletConnect:kotlin-walletconnect-lib:0.9.9'
+    implementation 'com.github.komputing:khex:1.1.2'
+    implementation 'org.java-websocket:Java-WebSocket:1.4.0'
+    implementation 'com.squareup.moshi:moshi-kotlin:1.13.0'
+    implementation 'com.squareup.moshi:moshi:1.13.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.10.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
